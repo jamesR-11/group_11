@@ -32,6 +32,9 @@ const Navbar = () => {
             <Link to="/attendance" className="bg-purple-500 px-4 py-2 rounded hover:bg-purple-700 mr-2">
               My Attendance
             </Link>
+            <Link to="/shifts" className="bg-green-500 px-4 py-2 rounded hover:bg-green-700 mr-2">
+              My Shifts
+            </Link>
 
             {/* Admin link visible only for the hard-coded admin email */}
             {user && user.email === ADMIN_EMAIL && (
@@ -41,6 +44,9 @@ const Navbar = () => {
     </Link>
     <Link to="/admin/users" className="bg-teal-500 px-3 py-2 rounded mr-2 hover:bg-teal-600">
       Manage Users
+    </Link>
+    <Link to="/admin/shifts" className="bg-orange-500 px-3 py-2 rounded mr-2 hover:bg-orange-600">
+      Manage Shifts
     </Link>
   </>
 )}
