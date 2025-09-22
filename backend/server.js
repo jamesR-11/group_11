@@ -14,12 +14,14 @@ app.use(express.json());
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 const attendanceRoutes = require('./routes/attendanceRoutes');
-const adminRoutes = require('./routes/adminRoutes');   // ⬅️ add
+const adminRoutes = require('./routes/adminRoutes');
+const shiftRoutes = require('./routes/shiftRoutes');   // ⬅️ add
 
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/attendance', attendanceRoutes);
-app.use('/api/admin', adminRoutes);                    // ⬅️ add
+app.use('/api/admin', adminRoutes);
+app.use('/api/shifts', shiftRoutes);                   // ⬅️ add
 
 if (require.main === module) {
   connectDB();
