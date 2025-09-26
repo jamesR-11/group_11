@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect} from 'react';
 import { useAuth } from '../context/AuthContext';
 import axiosInstance from '../axiosConfig';
 
@@ -53,8 +53,8 @@ const Profile = () => {
   if (loading) {
     return <div className="text-center mt-20">Loading...</div>;
   }
-
-  return (
+  
+ return (
     <main
       style={{
         minHeight: "100vh",
