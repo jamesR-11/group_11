@@ -1,11 +1,16 @@
 import axiosInstance from '../axiosConfig';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { ADMIN_EMAIL } from '../config/admin';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // hide navbar
+  const HIDE_ON = ['/login', '/register'];
+  if (HIDE_ON.includes(location.pathname)) return null;
 
   const handleLogout = async () => {
     try {
@@ -68,11 +73,7 @@ return (
               Logout
             </button>
           </>
-        ) : (
-          <>
-           
-          </>
-        )}
+        ) : null}
       </div>
     </nav>
   );
