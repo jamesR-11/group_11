@@ -28,13 +28,13 @@ const Navbar = () => {
   };
 
 return (
-    <nav className="h-[104px] flex items-center justify-between px-10"
+    <nav className="h-[70px] flex items-center justify-between px-10"
           style={{
             borderTop: "1px solid #9A8E8E",
             borderBottom: "1px solid #9A8E8E",
-            background: "#FFF",
+            background: "#FFF"
           }}>
-      <Link to={user ? "/attendance" : "/"}><img src="/timetrackr11_page.svg" alt="TimeTrackr11 Logo" className="h-25 w-25" /></Link>
+      <Link to={user ? "/attendance" : "/"}><img src="/timetrackr11_page.svg" alt="TimeTrackr11 Logo" className="h-12" /></Link>
       <div>
         {user ? (
           <>
