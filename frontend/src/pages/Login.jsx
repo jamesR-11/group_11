@@ -77,7 +77,7 @@ return (
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
-                  placeholder="Enter Email Address @exmaple.com"
+                  placeholder="e.g. abc@example.com"
                   style={{
                     width: "458px",
                     height: "60px",
