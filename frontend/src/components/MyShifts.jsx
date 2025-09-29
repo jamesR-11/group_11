@@ -110,82 +110,145 @@ const MyShifts = () => {
   }
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">My Shifts</h2>
-        <div className="flex gap-2">
-          <select
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-            className="p-2 border rounded"
+    <main
+      style={{
+        minHeight: "100vh",
+        width: "100%",
+        backgroundImage: "url('/background.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        padding: "20px 20px 20px 20px"
+      }}
+      className="flex items-center justify-center"
+    >
+      <div style={{
+          width: "100%",
+          fontFamily: "Afacad, sans-serif"
+        }}
           >
-            <option value="all">All Shifts</option>
-            <option value="upcoming">Upcoming</option>
-            <option value="assigned">Assigned</option>
-            <option value="confirmed">Confirmed</option>
-            <option value="completed">Completed</option>
-            <option value="cancelled">Cancelled</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Shifts List */}
-      <div className="space-y-4">
-        {shifts.map((shift) => (
-          <div key={shift._id} className="bg-white border rounded-lg p-4 shadow-sm">
-            <div className="flex justify-between items-start mb-3">
-              <div className="flex items-center gap-3">
-                <span className={`px-3 py-1 rounded-full text-sm font-medium ${getShiftTypeColor(shift.shiftType)}`}>
-                  {shift.shiftType.charAt(0).toUpperCase() + shift.shiftType.slice(1)} Shift
-                </span>
-                <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(shift.status)}`}>
-                  {shift.status.charAt(0).toUpperCase() + shift.status.slice(1)}
-                </span>
-              </div>
-              <div className="text-sm text-gray-500">
-                Assigned by: {shift.assignedBy?.name || 'Unknown'}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
-              <div>
-                <h4 className="font-medium text-gray-700">Start Time</h4>
-                <p className="text-gray-600">{formatDateTime(shift.startTime)}</p>
-              </div>
-              <div>
-                <h4 className="font-medium text-gray-700">End Time</h4>
-                <p className="text-gray-600">{formatDateTime(shift.endTime)}</p>
-              </div>
-            </div>
-
-            {shift.notes && (
-              <div className="mb-3">
-                <h4 className="font-medium text-gray-700">Notes</h4>
-                <p className="text-gray-600">{shift.notes}</p>
-              </div>
-            )}
-
-            <div className="flex justify-between items-center">
-              <div className="text-sm text-gray-500">
-                Created: {formatDateTime(shift.createdAt)}
-              </div>
-              <div className="flex gap-2">
-                {getStatusActions(shift._id, shift.status)}
-              </div>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold">My Shifts</h2>
+            <div className="flex gap-2">
+              <select
+                value={filter}
+                onChange={(e) => setFilter(e.target.value)}
+                className="p-2 border rounded"
+              >
+                <option value="all">All Shifts</option>
+                <option value="upcoming">Upcoming</option>
+                <option value="assigned">Assigned</option>
+                <option value="confirmed">Confirmed</option>
+                <option value="completed">Completed</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
             </div>
           </div>
-        ))}
-      </div>
 
-      {shifts.length === 0 && (
-        <div className="text-center py-8 text-gray-500">
-          {filter === 'upcoming' 
-            ? 'No upcoming shifts found.' 
-            : 'No shifts found for the selected filter.'}
+        {/* Shifts List */}
+          <div style={{
+            width: "100%",
+            height: "60px",
+            flexShrink: 0,
+            borderRadius: "9px 9px 0 0",
+            background: "#FFF",
+            boxShadow: "0 4px 4px 0 rgba(0, 0, 0, 0.25)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "10px",
+            margin: "0 0 10px 0"
+            }}>
+          <table className="min-w-full">
+            <thead>
+              <tr>
+                <th>Employee Name</th>
+                <th>Shift Type</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Status</th>
+                <th>Assigned By</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+            {shifts.map((shift) => (
+              <div key={shift._id} className="bg-white border rounded-lg p-4 shadow-sm">
+                <div className="flex justify-between items-start mb-3">
+                  <div className="flex items-center gap-3">
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${getShiftTypeColor(shift.shiftType)}`}>
+                      {shift.shiftType.charAt(0).toUpperCase() + shift.shiftType.slice(1)} Shift
+                    </span>
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(shift.status)}`}>
+                      {shift.status.charAt(0).toUpperCase() + shift.status.slice(1)}
+                    </span>
+                  </div>
+                  <div className="text-sm text-gray-500">
+                    Assigned by: {shift.assignedBy?.name || 'Unknown'}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                  <div>
+                    <h4 className="font-medium text-gray-700">Start Time</h4>
+                    <p className="text-gray-600">{formatDateTime(shift.startTime)}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-700">End Time</h4>
+                    <p className="text-gray-600">{formatDateTime(shift.endTime)}</p>
+                  </div>
+                </div>
+
+                {shift.notes && (
+                  <div className="mb-3">
+                    <h4 className="font-medium text-gray-700">Notes</h4>
+                    <p className="text-gray-600">{shift.notes}</p>
+                  </div>
+                )}
+
+                <div className="flex justify-between items-center">
+                  <div className="text-sm text-gray-500">
+                    Created: {formatDateTime(shift.createdAt)}
+                  </div>
+                  <div className="flex gap-2">
+                    {getStatusActions(shift._id, shift.status)}
+                  </div>
+                </div>
+              </div>
+            ))}
+            </tbody>
+          </table>
         </div>
-      )}
-    </div>
-  );
+
+        {/* List */}
+          <div style={{
+            width: "100%",
+            height: "60px",
+            flexShrink: 0,
+            borderRadius: "0 0 9px 9px",
+            background: "#FFF",
+            boxShadow: "0 4px 4px 0 rgba(0, 0, 0, 0.25)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "0 40px",
+            margin: "0 auto"
+            }}
+            className="space-y-4">
+            {shifts.length === 0 && (
+            <div className="text-center py-8 text-gray-500">
+              {filter === 'upcoming' 
+                ? 'No upcoming shifts found.' 
+                : 'No shifts found for the selected filter.'}
+            </div>
+            )}
+          </div>
+      </div>
+    </main>
+    );
 };
 
 export default MyShifts;

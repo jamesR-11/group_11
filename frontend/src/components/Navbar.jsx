@@ -33,47 +33,141 @@ return (
             borderBottom: "1px solid #9A8E8E",
             background: "#FFF"
           }}>
-      <Link to={user ? "/attendance" : "/"}><img src="/timetrackr11_page.svg" alt="TimeTrackr11 Logo" className="h-12" /></Link>
-      <div>
-        {user ? (
-          <>
-            <span className="mr-4">Hello, {user.name}</span>
-            <Link to="/applyLeave" className="bg-purple-500 px-4 py-2 rounded hover:bg-purple-700 mr-2">
-              Leave Application
-            </Link>
-            <Link to="/attendance" className="bg-purple-500 px-4 py-2 rounded hover:bg-purple-700 mr-2">
-              My Attendance
-            </Link>
-            <Link to="/shifts" className="bg-green-500 px-4 py-2 rounded hover:bg-green-700 mr-2">
-              My Shifts
-            </Link>
-            <Link to="/leaveTracker" className="bg-green-500 px-4 py-2 rounded hover:bg-green-700 mr-2">
-              Leave Tracker
-            </Link>
+      {user ? (
+        <>
+        {/* link to Leave Tracker */}
+        <Link to={user ? "/attendance" : "/"}><img src="/timetrackr11_page.svg" alt="TimeTrackr11 Logo" className="h-12" /></Link>
+          <div style={{display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center"}}>
+              <Link to="/attendance" style={{
+                textAlign: "center",
+                textShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",
+                fontFamily: "Afacad, sans-serif",
+                fontSize: "18px",
+                fontStyle: "normal",
+                fontWeight: 500,
+                lineHeight: "normal"
+              }}
+              className="px-4 py-1 text-[#2E4A8A] rounded-[9px] hover:bg-[#2E4A8A] hover:text-white mr-2">
+                My Attendance
+              </Link>
+              <Link to="/shifts" style={{
+                textAlign: "center",
+                textShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",
+                fontFamily: "Afacad, sans-serif",
+                fontSize: "18px",
+                fontStyle: "normal",
+                fontWeight: 500,
+                lineHeight: "normal"
+              }}
+              className="px-4 py-1 text-[#2E4A8A] rounded-[9px] hover:bg-[#2E4A8A] hover:text-white mr-2">
+                My Shifts
+              </Link>
+              <Link to="/applyLeave" style={{
+                textAlign: "center",
+                textShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",
+                fontFamily: "Afacad, sans-serif",
+                fontSize: "18px",
+                fontStyle: "normal",
+                fontWeight: 500,
+                lineHeight: "normal"
+              }}
+              className="px-4 py-1 text-[#2E4A8A] rounded-[9px] hover:bg-[#2E4A8A] hover:text-white mr-2">
+                Leave Application
+              </Link>
+              <Link to="/leaveTracker" style={{
+                textAlign: "center",
+                textShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",
+                fontFamily: "Afacad, sans-serif",
+                fontSize: "18px",
+                fontStyle: "normal",
+                fontWeight: 500,
+                lineHeight: "normal"
+              }}
+              className="px-4 py-1 text-[#2E4A8A] rounded-[9px] hover:bg-[#2E4A8A] hover:text-white mr-2">
+                Leave Tracker
+              </Link>
+          </div>
 
-            {/* Admin link visible only for the hard-coded admin email */}
-            {user && user.email === ADMIN_EMAIL && (
-              <>
-                <Link to="/admin/worklist" className="bg-indigo-500 px-3 py-2 rounded mr-2 hover:bg-indigo-600">
-                  Worklist
-                </Link>
-                <Link to="/admin/shifts" className="bg-orange-500 px-3 py-2 rounded mr-2 hover:bg-orange-600">
-                  Schedule Shift
-                </Link>
-                <Link to="/admin/attendance" className="bg-indigo-500 px-3 py-2 rounded mr-2 hover:bg-indigo-600">
-                  Attendance Summary
-                </Link>
-                <Link to="/admin/users" className="bg-teal-500 px-3 py-2 rounded mr-2 hover:bg-teal-600">
-                  Employee Summary
-                </Link>
-              </>
-            )}
-            <button onClick={handleLogout} className="bg-red-500 px-4 py-2 rounded hover:bg-red-700">
-              Logout
-            </button>
+        {/* Admin link visible only for the hard-coded admin email */}
+        {user && user.email === ADMIN_EMAIL && (
+            <>
+            {/* link to attendance summary*/}
+            <Link to={user ? "/attendance" : "/"}><img src="/timetrackr11_page.svg" alt="TimeTrackr11 Logo" className="h-12" /></Link>
+          <div style={{display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center"}}>
+              <Link to="/admin/worklist" style={{
+                textAlign: "center",
+                textShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",
+                fontFamily: "Afacad, sans-serif",
+                fontSize: "18px",
+                fontStyle: "normal",
+                fontWeight: 500,
+                lineHeight: "normal"
+              }}
+              className="px-4 py-1 text-[#2E4A8A] rounded-[9px] hover:bg-[#2E4A8A] hover:text-white mr-2">
+                Worklist
+              </Link>
+              <Link to="/admin/shifts" style={{
+                textAlign: "center",
+                textShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",
+                fontFamily: "Afacad, sans-serif",
+                fontSize: "18px",
+                fontStyle: "normal",
+                fontWeight: 500,
+                lineHeight: "normal"
+              }}
+              className="px-4 py-1 text-[#2E4A8A] rounded-[9px] hover:bg-[#2E4A8A] hover:text-white mr-2">
+                Schedule Shift
+              </Link>
+              <Link to="/admin/attendance" style={{
+                textAlign: "center",
+                textShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",
+                fontFamily: "Afacad, sans-serif",
+                fontSize: "18px",
+                fontStyle: "normal",
+                fontWeight: 500,
+                lineHeight: "normal"
+              }}
+              className="px-4 py-1 text-[#2E4A8A] rounded-[9px] hover:bg-[#2E4A8A] hover:text-white mr-2">
+                Attendance Summary
+              </Link>
+              <Link to="/admin/users" style={{
+                textAlign: "center",
+                textShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",
+                fontFamily: "Afacad, sans-serif",
+                fontSize: "18px",
+                fontStyle: "normal",
+                fontWeight: 500,
+                lineHeight: "normal"
+              }}
+              className="px-4 py-1 text-[#2E4A8A] rounded-[9px] hover:bg-[#2E4A8A] hover:text-white mr-2">
+                Employee Summary
+              </Link>
+          </div>
           </>
-        ) : null}
-      </div>
+        )}
+          <button onClick={handleLogout} style={{
+            textAlign: "center",
+            textShadow: "0 4px 4px rgba(0, 0, 0, 0.25)",
+            fontFamily: "Afacad, sans-serif",
+            fontSize: "18px",
+            fontStyle: "normal",
+            fontWeight: 500,
+            lineHeight: "normal"
+          }}
+          className="px-4 py-1 text-[#2E4A8A] rounded-[9px] hover:bg-[#2E4A8A] hover:text-white mr-2">
+            Logout
+          </button>
+          <span className="mr-4">Hello, </span>
+          <Link to="/profile" className="px-4 py-1 group flex items-center justify-center">
+            <img src="/profile.svg" alt="Profile Logo" className="h-12 block group-hover:hidden" />
+            <img src="/profile_hover.svg" alt="Hover Profile Logo" className="h-12 hidden group-hover:block" />
+          </Link>
+        </>
+      ) : null}
     </nav>
   );
 };

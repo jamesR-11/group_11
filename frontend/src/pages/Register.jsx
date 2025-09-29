@@ -66,12 +66,24 @@ return (
           </label>
 
           <label>
+            <span className="block mb-1 font-medium">Phone Number</span>
+            <input
+              type="text"
+              value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              className="w-[458px] h-[60px] rounded-[9px] border border-[#2E4A8A] bg-[#D9D9D9] px-4"
+              placeholder='+61 (0) 123456789'
+            />
+          </label>
+
+          <label>
             <span className="block mb-1 font-medium">Email Address <span className="text-red-600">*</span></span>
             <input
               type="email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               className="w-[458px] h-[60px] rounded-[9px] border border-[#2E4A8A] bg-[#D9D9D9] px-4"
+              placeholder='e.g. abc@example.com'
               required
             />
           </label>

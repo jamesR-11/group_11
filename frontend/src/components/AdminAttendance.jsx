@@ -96,88 +96,124 @@ export default function AdminAttendance() {
   if (user?.email !== ADMIN_EMAIL) return <div className="p-6">Admin only.</div>;
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">All Users Attendance</h2>
-      {err && <div className="bg-red-100 text-red-700 p-3 mb-3 rounded">{err}</div>}
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="px-4 py-2 border">User</th>
-              <th className="px-4 py-2 border">Email</th>
-              <th className="px-4 py-2 border">Login (Day)</th>
-              <th className="px-4 py-2 border">Login (Date)</th>
-              <th className="px-4 py-2 border">Login (Time)</th>
-              <th className="px-4 py-2 border">Logout (Day)</th>
-              <th className="px-4 py-2 border">Logout (Date)</th>
-              <th className="px-4 py-2 border">Logout (Time)</th>
-              <th className="px-4 py-2 border">Duration</th>
-              <th className="px-4 py-2 border">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((r) => {
-              const lin = fmtParts(r.loginAt);
-              const lout = fmtParts(r.logoutAt);
-              const durMs = r.logoutAt ? (new Date(r.logoutAt) - new Date(r.loginAt)) : null;
-              const dur = fmtDuration(durMs);
+    <main
+      style={{
+        minHeight: "100vh",
+        width: "100%",
+        backgroundImage: "url('/background.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        padding: "20px 20px 20px 20px"
+      }}
+      className="flex items-center justify-center"
+    >
+      <div style={{
+          width: "100%",
+          fontFamily: "Afacad, sans-serif"
+        }}
+          >
+        <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold">Attendance Dashboard</h2>
+            <div className="flex gap-2">
+            </div>
+        </div>
 
-              const isEditing = editingId === r._id;
+          {/* Shifts List */}
+          <div style={{
+            width: "100%",
+            height: "60px",
+            flexShrink: 0,
+            borderRadius: "9px 9px 0 0",
+            background: "#FFF",
+            boxShadow: "0 4px 4px 0 rgba(0, 0, 0, 0.25)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "10px",
+            margin: "0 0 10px 0"
+            }}>
+            <table className="min-w-full">
+                <thead>
+                  <tr>
+                    <th>Employee Name</th>
+                    <th>Work Day</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Work Day</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Duration</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+              <tbody>
+                {rows.map((r) => {
+                  const lin = fmtParts(r.loginAt);
+                  const lout = fmtParts(r.logoutAt);
+                  const durMs = r.logoutAt ? (new Date(r.logoutAt) - new Date(r.loginAt)) : null;
+                  const dur = fmtDuration(durMs);
 
-              return (
-                <tr key={r._id}>
-                  <td className="px-4 py-2 border">{r.userId?.name || '—'}</td>
-                  <td className="px-4 py-2 border">{r.userId?.email || '—'}</td>
+                  const isEditing = editingId === r._id;
 
-                  {/* Login columns */}
-                  <td className="px-4 py-2 border">{lin.day}</td>
-                  <td className="px-4 py-2 border">
-                    {isEditing ? (
-                      <input
-                        type="datetime-local"
-                        className="border p-1"
-                        value={form.loginAt}
-                        onChange={(e)=>setForm({...form, loginAt:e.target.value})}
-                      />
-                    ) : lin.date}
-                  </td>
-                  <td className="px-4 py-2 border">{lin.time}</td>
+                  return (
+                    <tr key={r._id}>
+                      <td className="px-4 py-2 border">{r.userId?.name || '—'}</td>
+                      <td className="px-4 py-2 border">{r.userId?.email || '—'}</td>
 
-                  {/* Logout columns */}
-                  <td className="px-4 py-2 border">{lout.day}</td>
-                  <td className="px-4 py-2 border">
-                    {isEditing ? (
-                      <input
-                        type="datetime-local"
-                        className="border p-1"
-                        value={form.logoutAt}
-                        onChange={(e)=>setForm({...form, logoutAt:e.target.value})}
-                      />
-                    ) : lout.date}
-                  </td>
-                  <td className="px-4 py-2 border">{lout.time}</td>
+                      {/* Login columns */}
+                      <td className="px-4 py-2 border">{lin.day}</td>
+                      <td className="px-4 py-2 border">
+                        {isEditing ? (
+                          <input
+                            type="datetime-local"
+                            className="border p-1"
+                            value={form.loginAt}
+                            onChange={(e)=>setForm({...form, loginAt:e.target.value})}
+                          />
+                        ) : lin.date}
+                      </td>
+                      <td className="px-4 py-2 border">{lin.time}</td>
 
-                  <td className="px-4 py-2 border">{dur}</td>
+                      {/* Logout columns */}
+                      <td className="px-4 py-2 border">{lout.day}</td>
+                      <td className="px-4 py-2 border">
+                        {isEditing ? (
+                          <input
+                            type="datetime-local"
+                            className="border p-1"
+                            value={form.logoutAt}
+                            onChange={(e)=>setForm({...form, logoutAt:e.target.value})}
+                          />
+                        ) : lout.date}
+                      </td>
+                      <td className="px-4 py-2 border">{lout.time}</td>
 
-                  <td className="px-4 py-2 border">
-                    {isEditing ? (
-                      <div className="flex items-center gap-2">
-                        <button className="bg-green-600 text-white px-3 py-1 rounded" onClick={()=>save(r._id)}>Save</button>
-                        <button className="bg-gray-500 text-white px-3 py-1 rounded" onClick={cancel}>Cancel</button>
-                      </div>
-                    ) : (
-                      <div className="flex items-center gap-2">
-                        <button className="bg-blue-600 text-white px-3 py-1 rounded" onClick={()=>startEdit(r)}>Edit</button>
-                        <button className="bg-red-600 text-white px-3 py-1 rounded" onClick={()=>del(r._id)}>Delete</button>
-                      </div>
-                    )}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+                      <td className="px-4 py-2 border">{dur}</td>
+
+                      <td className="px-4 py-2 border">
+                        {isEditing ? (
+                          <div className="flex items-center gap-2">
+                            <button className="bg-green-600 text-white px-3 py-1 rounded" onClick={()=>save(r._id)}>Save</button>
+                            <button className="bg-gray-500 text-white px-3 py-1 rounded" onClick={cancel}>Cancel</button>
+                          </div>
+                        ) : (
+                          <div className="flex items-center gap-2">
+                            <button className="bg-blue-600 text-white px-3 py-1 rounded" onClick={()=>startEdit(r)}>Edit</button>
+                            <button className="bg-red-600 text-white px-3 py-1 rounded" onClick={()=>del(r._id)}>Delete</button>
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
     </div>
+  </main>
   );
 }
