@@ -25,7 +25,6 @@ const Navbar = () => {
       navigate('/login');
     }
   };
-//bhsjdhbgb
 return (
     <nav className="h-[70px] flex items-center justify-between px-10"
           style={{
